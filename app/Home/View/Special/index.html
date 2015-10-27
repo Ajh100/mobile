@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$SiteCurentCity.title}- 特价车源 - 捷和二手车</title>
+  <include file="Public:meta" />
+</head>
+<body>
+
+
+<header data-am-widget="header" class="am-header am-header-default my-header">
+  <div class="am-header-left am-header-nav">
+    <a href="/" class="">
+      <span class="am-icon-chevron-left am-icon-sm am-icon-md"></span>
+    </a>
+  </div>
+  <h1 class="am-header-title">
+    特价车源
+  </h1>
+  <div class="am-header-right am-header-nav">
+    <a href="#doc-oc-menu" data-am-offcanvas>
+      <span style="font-size:1rem;">选车</span>
+    </a>
+	<div id="doc-oc-menu" class="am-offcanvas">
+	  <div class="am-offcanvas-bar">
+	    <div class="am-offcanvas-content">
+			<include file="Public:menu" />
+	    </div>
+	  </div>
+	</div>
+  </div>
+</header>
+
+
+<ul class="am-avg-sm-4 boxes">
+  <li class="box"><a class="amenu" href="__APP__/city/">城市</a></li>
+  <li class="box"><a class="amenu" href="__APP__/brand/">品牌</a></li>
+  <li class="box">
+		<a href="#doc-oc-series" class="amenu" data-am-offcanvas>车型</a>
+		<div id="doc-oc-series" class="am-offcanvas">
+		  <div class="am-offcanvas-bar">
+			<div class="am-offcanvas-content">
+				<p>选择车型</p>
+				<ul class="am-nav">
+					<li class="am-active"><a href="__APP__/car/level/">全部</a></li>
+					<volist name="redLevel" id="vo">
+					   <li class="am-active"><a href="__APP__/car/level/{$vo.id}">{$vo.title}</a></li>
+					</volist>
+				</ul>
+			</div>
+		  </div>
+		</div>
+  </li>
+  <li class="box">
+		<a href="#doc-oc-price" class="amenu" data-am-offcanvas style="border:none;">价格</a>
+		<div id="doc-oc-price" class="am-offcanvas">
+		  <div class="am-offcanvas-bar">
+			<div class="am-offcanvas-content">
+				<p>选择价格</p>
+				<ul class="am-nav">
+				  <li class="am-active"><a href="__APP__/car/price/">全部</a></li>
+				  <li class="am-active"><a href="__APP__/special/">特价车</a></li>
+				  <li class="am-active"><a href="__APP__/car/price/10-2">10-20</a></li>
+				  <li class="am-active"><a href="__APP__/car/price/20-30">20-30</a></li>
+				  <li class="am-active"><a href="__APP__/car/price/30-50">30-50</a></li>
+				  <li class="am-active"><a href="__APP__/car/price/50-90">50-90</a></li>
+				  <li class="am-active"><a href="__APP__/car/price/90-120">90-120</a></li>
+				  <li class="am-active"><a href="__APP__/car/price/120-0">120以上</a></li>
+				</ul>
+			</div>
+		  </div>
+		</div>
+  </li>
+</ul>
+
+<div class="am-g my-search">
+	<form method="get" action="__APP__/car/" id="searchForm">
+    <div class="am-input-group">
+		<input type="text" class="am-form-field" name="keyword" value="" placeholder="搜索您需要的车型" />
+		<span class="am-input-group-btn"><button onclick="javascript:$('#searchForm').submit()" class="am-btn am-btn-default" type="button"><span class="am-icon-search"></span></button></span>
+    </div>
+	</form>
+</div>
+
+
+
+<div id="carcontent">
+    <div class="carlist"> 
+	<volist name="carList" id="vo">
+		<a href="__APP__/car/detail/id/{$vo.id}<neq name="Think.session.userPhone" value="">&userphone={$Think.session.userPhone}</neq>" class="mod">
+		<img data-am-scrollspy="{animation: 'slide-right'}" src="{:C('WEB_IMG_URL')}thumb/d/{$vo.cover|extend},c_fill,h_130,w_200.{$vo.cover|extend=1}" alt="{$vo.title}" />
+		<b><h3>{$vo.title}</h3><em>{$vo.regtime}上牌</em><em>{$vo.mileage}万公里</em><p><span style="text-decoration: line-through;color: #7c7c7c;">{$vo.price}</span> <span>{$vo.specialprice}万</span></p></b>
+		</a>
+	</volist>
+    </div>
+</div>
+
+
+<div id="loaderbox" style="text-align:center;padding:1rem;display:none;">
+<button class="am-btn am-btn-default my-loader"><i class="am-icon-spinner am-icon-spin"></i>加载中</button>
+</div>
+
+
+
+
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "
+id="">
+  <ul class="am-navbar-nav am-cf am-avg-sm-4">
+    <li>
+      <a href="tel:{$SiteConfigData.webtel}" class="">
+        <img src="__PUBLIC__/images/phone.png" alt="呼叫" />
+        <span class="am-navbar-label">呼叫</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<include file="Public:footer" />
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+<script src="__PUBLIC__/js/amazeui.min.js"></script>
+
+</body>
+</html>

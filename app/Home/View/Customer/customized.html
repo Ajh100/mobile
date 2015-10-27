@@ -1,0 +1,113 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>定制车源 - 捷和二手车</title>
+  <include file="Public:meta" />
+</head>
+<body>
+
+
+<header data-am-widget="header" class="am-header am-header-default my-header">
+  <div class="am-header-left am-header-nav">
+    <a href="/" class="">
+     <span class="am-icon-chevron-left am-icon-sm am-icon-md"></span>
+    </a>
+  </div>
+  <h1 class="am-header-title">定制车源</h1>
+  <div class="am-header-right am-header-nav">
+    <a href="#doc-oc-menu" data-am-offcanvas>
+      <span style="font-size:1rem;">选车</span>
+    </a>
+	<div id="doc-oc-menu" class="am-offcanvas">
+	  <div class="am-offcanvas-bar">
+	    <div class="am-offcanvas-content">
+			<include file="Public:menu" />
+	    </div>
+	  </div>
+	</div>
+  </div>
+</header>
+
+
+<div class="am-g" style="margin-top:2rem;">
+  <div class="am-u-md-8 am-u-sm-centered">
+    <form class="am-form" action="__SELF__" method="post">
+      <fieldset class="am-form-set">
+        <input type="text" name="title" maxlength="20" placeholder="品牌车型:（宝马M3）" value="{$Think.post.title}">
+        <input type="text" name="price" maxlength="5" placeholder="预算:（30万）数字" value="{$Think.post.price}">
+        <input type="text" name="telphone" maxlength="11" placeholder="手机号码" value="{$Think.post.telphone}">
+      </fieldset>
+	  <notempty name="msg"><div style="padding:.5rem 0">{$msg}</div></notempty>
+      <button type="submit" class="am-btn am-btn-primary am-btn-block">提交</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "
+id="">
+  <ul class="am-navbar-nav am-cf am-avg-sm-4">
+    <li>
+      <a href="tel:{$SiteConfigData.webtel}" class="">
+        <img src="__PUBLIC__/images/phone.png" alt="呼叫" />
+        <span class="am-navbar-label">呼叫</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<include file="Public:footer" />
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+<script src="__PUBLIC__/js/amazeui.min.js"></script>
+<script>
+var page = 1;
+var keyword = '{$Think.get.keyword}';
+var brand = '{$Think.get.brand}';
+var level = '{$Think.get.level}';
+var price = '{$Think.get.price}';
+$(function() {
+	$('#my-footer').scrollspy({}).on('inview.scrollspy.amui', function() {
+		page++;
+		$("#loaderbox").show();
+		$.ajax({
+			type: "get",
+            dataType: "json",
+            url: "__APP__/car/ajaxlist/",
+            data: "page=" + page + "&keyword=" + keyword + "&brand=" + brand + "&level=" + level + "&price=" + price,
+			complete :function(){$("#loaderbox").hide();},
+			success: function(data){
+				if(data){
+					$.each(data,function(index,array){
+						var str = '';
+						str += "<a href=\"__APP__/car/detail/id/"+array['id']+"\" class=\"mod\">"+
+							   "<img data-am-scrollspy=\"{animation: 'slide-right'}\""+
+							   " src=\"{:C('WEB_RES_URL')}"+array['cover']+"\" alt=\""+array['title']+"\" />"+
+							   "<b><h3>"+array['title']+"</h3><em>"+array['regtime']+"上牌</em>"+
+							   "<em>"+array['mileage']+"万公里</em><p>￥"+array['price']+"万</p></b></a>";
+						$('#carcontent .carlist').append(str);
+						$('#carcontent img').scrollspy({animation: 'slide-right'});
+					});
+				}else{
+					return;
+				}
+			}
+		});
+	}).on('outview.scrollspy.amui', function() {
+		//alert('离开视口');
+	});
+});
+</script>
+</body>
+</html>

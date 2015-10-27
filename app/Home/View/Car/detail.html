@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$carData.title} - 捷和二手车</title>
+  <include file="Public:meta" />
+</head>
+<body>
+
+
+<header data-am-widget="header" class="am-header am-header-default my-header">
+  <div class="am-header-left am-header-nav">
+    <a href="__APP__/car/" class=""><span class="am-icon-chevron-left am-icon-sm am-icon-md"></span></a>
+  </div>
+  <h1 class="am-header-title">{$carData.title}</h1>
+  <div class="am-header-right am-header-nav">
+    <a href="#doc-oc-menu" data-am-offcanvas>
+      <span style="font-size:1rem;">选车</span>
+    </a>
+	<div id="doc-oc-menu" class="am-offcanvas">
+	  <div class="am-offcanvas-bar">
+	    <div class="am-offcanvas-content">
+		  	<include file="Public:menu" />
+	    </div>
+	  </div>
+	</div>
+  </div>
+</header>
+
+
+
+<div data-am-widget="slider" class="am-slider am-slider-a2" data-am-slider='{&quot;directionNav&quot;:false}'>
+  <ul class="am-slides">
+	<volist name="carImg" id="vo" offset="0" length='10'>
+    <li><img src="{:C('WEB_IMG_URL')}thumb/d/{$vo|extend},c_fill,h_240,w_360.{$vo|extend=1}"></li>
+    </volist>
+</div>
+
+
+
+<div class="car-deitel">
+	
+  <img src="{:C('WEB_RES_URL')}{$carData.cover}" style="width:0;height:0;" />
+	
+	<div class="">
+		<ul class="am-list am-list-static am-list-border">
+		<li>{$carData.title}</li>
+		<eq name="carData.status" value="1">
+		<li>一口价：￥{$carData.price}万</li>
+		<li>新车价：{$carClass.newprice}万 为您节省{$carClass['newprice'] - $carData['price']}万</li>		
+		</eq>
+		<neq name="carData.shoufu" value="">
+		<li>首付：￥{$carData.shoufu}万</li>	
+		</neq>
+		<eq name="carData.status" value="2">
+		<li>特价：￥{$carData.specialprice}万</li>
+		<li>原价：￥{$carData.price}万</li>
+		<li>新车价：{$carClass.newprice}万 为您节省{$carClass['newprice'] - ($carData['price']+$carData['specialprice'])}万</li>
+		</eq>
+		<li>门店：{$storeInfo.title}</li>
+		<li>地址：{$storeInfo.address}</li>
+		</ul>
+	</div>
+<div>
+  <table class="am-table am-table-bordered am-table-radius">
+    <tbody>
+        <tr style="width:1rem;">
+            <td class="am-active">初登日期</td>
+            <td>{$carData['regtime'] ? date('Y-m', strtotime($carData['regtime'])) : '未上牌'}</td>
+        </tr>
+        <tr>
+            <td class="am-active">行驶里程</td>
+            <td>{$carData.mileage}万公里</td>
+        </tr>
+        <tr class="am-active">
+            <td class="am-active">车身颜色</td>
+            <td>{$carColor.title}</td>
+        </tr>
+        <tr>
+            <td class="am-active">排放标准</td>
+            <td>{$carEsid.title}</td>
+        </tr>
+        <tr>
+            <td class="am-active">商 业 险</td>
+            <td>{$carData['commercial']==1?'无':'有'}</td>
+        </tr>
+        <tr>
+            <td class="am-active">交 强 险</td>
+            <td>{$carData['inspeyear']==''?'无':'有'}</td>
+        </tr>
+        <tr>
+            <td class="am-active">过户手续</td>
+            <td>{$carData['transfer']==''?'无':'齐全'}</td>
+        </tr>
+        <tr>
+            <td class="am-active" colspan="2">介绍</td>
+        </tr>
+        <tr>
+          <td colspan="2">{$carData.description}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+
+
+
+<div data-am-widget="map" class="am-map am-map-default" data-name="{$storeInfo.title}"
+data-address="{$storeInfo.address}" data-longitude="" data-latitude=""
+data-scaleControl="" data-zoomControl="true" data-setZoom="17" data-icon="http://amuituku.qiniudn.com/mapicon.png">
+  <div id="bd-map"></div>
+</div>
+
+
+<notempty name="redCarList">
+<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+  <h2 class="am-titlebar-title ">推荐车源</h2>
+  <nav class="am-titlebar-nav">
+    <a href="__APP__/car/" class="">more &raquo;</a>
+  </nav>
+</div>
+<div id="carcontent">
+    <div class="carlist"> 
+	<volist name="redCarList" id="vo">
+		<a href="__APP__/car/detail/id/{$vo.id}" class="mod">
+		<img src="{:C('WEB_IMG_URL')}thumb/d/{$vo.cover|extend},c_fill,h_130,w_200.{$vo.cover|extend=1}" alt="{$vo.title}" />
+		<b><h3>{$vo.title}</h3><em>{$vo.regtime}上牌</em><em>{$vo.mileage}万公里</em><p>￥{$vo.price}万</p></b>
+		</a>
+	</volist>
+    </div>
+</div>
+</notempty>
+
+
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "
+id="">
+  <ul class="am-navbar-nav am-cf am-avg-sm-4">
+    <li>
+      <a href="tel:<eq name="Think.get.userphone" value="">{$saleMan.telphone}<else/><if condition="preg_phone($_GET['userphone'])">{$Think.get.userphone}<else />{$saleMan.telphone}</if></eq>" class="">
+        <img src="__PUBLIC__/images/phone.png" alt="呼叫" />
+        <span class="am-navbar-label">呼叫</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<include file="Public:footer" />
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+<script src="__PUBLIC__/js/amazeui.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+wx.config({
+	debug: false,
+	appId: '{$signPackage.appId}',
+	timestamp: {$signPackage.timestamp},
+	nonceStr: '{$signPackage.nonceStr}',
+	signature: '{$signPackage.signature}',
+   jsApiList: [
+		'checkJsApi',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo'
+	  ]
+  });             
+wx.ready(function () {
+	  // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+	wx.checkJsApi({
+	  jsApiList: [
+		'getNetworkType',
+		'previewImage',
+		 'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo'
+	  ],            
+	});
+  var shareData = {
+//标题
+	title: '{$carData.title}',
+//摘要
+	  desc: '{$carClass.output}\n{$carData.mileage}万公里\n{$carEsid.title}\n{$carData['regtime'] ? date('Y-m', strtotime($carData['regtime'])) : '未上牌'}',
+//链接,可以换主页
+	  link: '{$signPackage.url}',
+//缩略图
+	  imgUrl: '{:C('WEB_RES_URL')}{$carData.cover}', 
+
+  };
+
+  var linkUrl = '{$signPackage.url}';
+  if(localStorage["realName"] && localStorage["userPhone"]){
+      linkUrl += '/userphone/'+localStorage["realName"]; 
+  }
+
+	wx.onMenuShareTimeline({
+		title: '{$carData.title}-{$carData.price}万', // 分享标题
+		link: '{$signPackage.url}', // 分享链接
+		imgUrl: linkUrl, // 分享图标
+		success: function () { 
+			// 用户确认分享后执行的回调函数
+		},
+		cancel: function () { 
+			// 用户取消分享后执行的回调函数
+		}
+	});
+  
+  wx.onMenuShareAppMessage(shareData);
+ // wx.onMenuShareTimeline(shareData);
+  wx.onMenuShareQQ(shareData);
+  wx.onMenuShareWeibo(shareData);
+});
+</script>
+
+</body>
+</html>

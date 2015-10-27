@@ -1,0 +1,275 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$SiteConfigData.webtitle}</title>
+  <meta name="description" content="{$SiteConfigData.webdescription}">
+  <meta name="keywords" content="{$SiteConfigData.webkeyword}">
+  <include file="Public:meta" />
+  <style>
+  .am-header-default .am-header-title{float:left;margin-left:0;padding-top:5px;padding-bottom:5px;}
+  .am-header .am-header-title img {margin-top: 5px;}
+  .am-header-default .am-header-nav > a{color:#0e90d2;}
+  #service{border-top: 1px solid #dedede;border-bottom: 1px solid #dedede;}
+  #service .left,#service .right{width:50%;}
+  #service .left{float:left;border-right: 1px solid #dedede;}
+  #service .right{float:right;}
+  #service .right .top1{border-bottom: 1px solid #dedede;}
+  #service img{width:100%;}
+  </style>
+</head>
+<body>
+
+
+<header data-am-widget="header" class="am-header am-header-default my-header" style="background:#FFF;">
+  <!--
+  <h1 class="am-header-title">
+    捷和二手车
+  </h1>
+  -->
+    <h1 class="am-header-title">
+    <img src="http://www.jh100.com/public/ui/images/logo.png" />
+  </h1>
+  <div class="am-header-right am-header-nav" style="margin-top:5px;">
+    <a href="__APP__/user/login" id="userInfo" style="font-size:1rem;">
+      <span class="am-icon-bars am-icon-bars am-icon-sm am-icon-bars am-icon-md">登录</span>
+    </a>
+  </div>
+</header>
+
+
+
+
+
+<ul class="am-avg-sm-4 boxes">
+  <li class="box"><a class="amenu" href="__APP__/city/">城市</a></li>
+  <li class="box"><a class="amenu" href="__APP__/brand/">品牌</a></li>
+  <li class="box">
+		<a href="#doc-oc-series" class="amenu" data-am-offcanvas>车型</a>
+		<div id="doc-oc-series" class="am-offcanvas">
+		  <div class="am-offcanvas-bar">
+			<div class="am-offcanvas-content">
+				<p>选择车型</p>
+				<ul class="am-nav">
+					<li class="am-active"><a href="__APP__/car/index/level/">全部</a></li>
+					<volist name="redLevel" id="vo">
+					   <li class="am-active"><a href="__APP__/car/index/level/{$vo.id}">{$vo.title}</a></li>
+					</volist>
+				</ul>
+			</div>
+		  </div>
+		</div>
+  </li>
+  <li class="box">
+		<a href="#doc-oc-price" class="amenu" data-am-offcanvas style="border:none;">价格</a>
+		<div id="doc-oc-price" class="am-offcanvas">
+		  <div class="am-offcanvas-bar">
+			<div class="am-offcanvas-content">
+				<p>选择价格</p>
+				<ul class="am-nav">
+				  <li class="am-active"><a href="__APP__/car/index/price/">全部</a></li>
+				  <li class="am-active"><a href="__APP__/car/index/price/10-2">10-20</a></li>
+				  <li class="am-active"><a href="__APP__/car/index/price/20-30">20-30</a></li>
+				  <li class="am-active"><a href="__APP__/car/index/price/30-50">30-50</a></li>
+				  <li class="am-active"><a href="__APP__/car/index/price/50-90">50-90</a></li>
+				  <li class="am-active"><a href="__APP__/car/index/price/90-120">90-120</a></li>
+				  <li class="am-active"><a href="__APP__/car/index/price/120-0">120以上</a></li>
+				</ul>
+			</div>
+		  </div>
+		</div>
+  </li>
+</ul>
+
+
+<div id="service">
+	<div class="left"><a href="#"><img src="__PUBLIC__/images/home01.jpg" /></a></div>
+	<div class="right">
+		<div class="top1">
+		<a href="#"><img src="__PUBLIC__/images/home02.jpg" /></a>
+		</div>
+		<div class="top2">
+		<a href="#"><img src="__PUBLIC__/images/home03.jpg" /></a>
+		</div>
+	</div>
+</div>
+
+<div class="am-cf"></div>
+
+<div class="am-g my-search">
+	<form method="get" action="__APP__/car/" id="searchForm">
+    <div class="am-input-group">
+		<input type="text" class="am-form-field" name="keyword" value="" placeholder="搜索您需要的车型" />
+		<span class="am-input-group-btn"><button onclick="javascript:$('#searchForm').submit()" class="am-btn am-btn-default" type="button"><span class="am-icon-search"></span></button></span>
+    </div>
+	</form>
+</div>
+
+<div class="am-tabs" id="doc-my-tabs" style="padding:.5rem;">
+  <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+    <li class="am-active"><a href="">品牌</a></li>
+    <li><a href="">车型</a></li>
+    <li><a href="">价格</a></li>
+  </ul>
+  <div class="am-tabs-bd">
+    <div class="am-tab-panel am-active">
+		<div class="hotbrand">
+        	<div class="brand">
+                <a href="__APP__/car/index/brand/14"><img src="__PUBLIC__/images/brand/5.jpg"><br>奔驰</a>
+				<a href="__APP__/car/index/brand/9"><img src="__PUBLIC__/images/brand/2.jpg"><br>宝马</a>
+				<a href="__APP__/car/index/brand/10"><img src="__PUBLIC__/images/brand/3.jpg"><br>保时捷</a>
+				<a href="__APP__/car/index/brand/6"><img src="__PUBLIC__/images/brand/4.jpg"><br>奥迪</a>
+				<a href="__APP__/car/index/brand/27"><img src="__PUBLIC__/images/brand/1.jpg"><br>大众</a>
+				<a href="__APP__/car/index/brand/79"><img src="__PUBLIC__/images/brand/6.jpg"><br>路虎</a>
+            </div>
+         </div>
+    </div>
+    <div class="am-tab-panel">
+		<div class="hotlevel">
+        	<div class="level">
+                    <ul class="am-avg-sm-3">
+						<volist name="redLevel" id="vo">
+                        <li><a href="__APP__/car/index/level/{$vo.id}">{$vo.title}</a></li>
+                        </volist>
+                     </ul>   
+             </div>
+         </div>
+    </div>
+    <div class="am-tab-panel">
+		<div class="hotprice">
+        	<div class="price">
+                    <ul class="am-avg-sm-3">
+                        <li><a href="__APP__/car/index/price/10">10</a></li>
+                        <li><a href="__APP__/car/index/price/10-20">10-20</a></li>
+                        <li><a href="__APP__/car/index/price/20-30">20-30</a></li>
+                        <li><a href="__APP__/car/index/price/20-30">30-50</a></li>
+                        <li><a href="__APP__/car/index/price/50-90">50-90</a></li>
+                        <li><a href="__APP__/car/index/price/90-120">90-120</a></li>
+                     </ul>   
+             </div>
+         </div> 
+    </div>
+    
+  </div>
+  
+</div>
+
+
+<!--
+<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+  <h2 class="am-titlebar-title ">特价优惠</h2>
+  <nav class="am-titlebar-nav">
+    <a href="__APP__/car/" class="">more &raquo;</a>
+  </nav>
+</div>
+-->
+
+<div id="carcontent">
+    <div class="carlist"> 
+	<volist name="speCar" id="vo">
+		<a href="__APP__/car/detail/id/{$vo.id}" class="mod">
+		<img src="{:C('WEB_IMG_URL')}thumb/d/{$vo.cover|extend},c_fill,h_130,w_200.{$vo.cover|extend=1}" alt="{$vo.title}" />
+		<b>
+			<h3>{$vo.title}</h3><em>{$vo.regtime}上牌</em><em>{$vo.mileage}万公里</em>
+			<p><span style="text-decoration: line-through;color: #7c7c7c;">{$vo.price}</span> <span>{$vo.specialprice}万</span></p>
+		</b>
+		</a>
+	</volist>
+    </div>
+</div>
+
+
+
+<div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+  <h2 class="am-titlebar-title ">新闻资讯</h2>
+  <nav class="am-titlebar-nav">
+    <a href="__APP__/news/" class="">more &raquo;</a>
+  </nav>
+</div>
+
+
+<div class="newslist prit" id="newslist">
+	<volist name="redNews" id="vo">
+	<a class="mod" href="__APP__/news/{$vo.id}/">
+	<eq name="vo.image" value=""><img src="__PUBLIC__/images/jh100.jpg"><else/><img src="{:C('WEB_RES_URL')}{$vo.image}"></eq>
+	<b>
+	<h2>{$vo.title}</h2>
+	<em><span>时间:{$vo.addtime|date="Y-m-d",###}</span><span>点击:{$vo.clicktimes}</span></em>
+	</b>
+	</a>
+	</volist>
+</div>
+
+
+
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "
+id="">
+  <ul class="am-navbar-nav am-cf am-avg-sm-4">
+    <li>
+      <a href="tel:{$SiteConfigData.webtel}" class="">
+        <img src="__PUBLIC__/images/phone.png" alt="呼叫" />
+        <span class="am-navbar-label">呼叫</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<include file="Public:footer" />
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+<script src="__PUBLIC__/js/amazeui.min.js"></script>
+<script>
+
+<eq name="Think.get.logout" value="yes">
+localStorage.clear();
+</eq>
+
+<neq name="Think.session.realname" value="">
+localStorage["realName"] = '{$Think.session.realname}';
+</neq>
+<neq name="Think.session.moblie" value="">
+localStorage["userPhone"] = '{$Think.session.moblie}';
+</neq>
+
+
+
+$(function() {
+
+  if(localStorage["realName"] && localStorage["userPhone"]){
+      $('#userInfo').text('退出');
+      $('#userInfo').attr('href','__APP__/user/logout');
+      $('#navbarUser').show();
+  }
+
+
+
+
+  $('.am-slider-a1').flexslider({
+  // options
+  });
+  $('#doc-my-tabs').tabs();
+  
+  resize();
+  $(window).resize(function(){
+	resize();
+  });
+});
+
+function resize(){
+  var width =  $('body').width();
+  $('#service').css('height',width/2+'px');
+  $('#service .left').css('height',width/2+'px');
+  $('#service .right').css('height',width/2+'px');
+  
+}
+</script>
+</body>
+</html>

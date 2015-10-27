@@ -1,0 +1,37 @@
+<div data-am-widget="gotop" class="am-gotop am-gotop-default">
+  <a href="#top" title="回到顶部">
+    <span class="am-gotop-title">回到顶部</span>
+    <i class="am-gotop-icon am-icon-chevron-up"></i>
+  </a>
+</div>
+
+<footer id="my-footer" data-am-widget="footer" class="am-footer am-footer-default">
+  <div class="am-footer-switch">
+    <a href="http://m.jh100.com">手机版</a>
+    <span class="am-footer-divider">|</span>
+    <a href="{$SiteConfigData.weburl}">电脑版</a>
+  </div>
+  <div class="am-footer-miscs ">
+    <p>{$SiteConfigData.webcompany}</p>
+    <p>{$SiteConfigData.webcrod}</p>
+  </div>
+  <div class="am-footer-miscs ">
+    <p>客服热线：{$SiteConfigData.webtel}</p>
+  </div>
+</footer>
+
+<script type="text/javascript">
+var c1c = 0;
+window.uexOnload = function(type){
+    uexWindow.setReportKey(0,1);
+    uexWindow.onKeyPressed = function(){ 
+        if (c1c > 0) {
+            uexWidgetOne.exit();
+        }
+        else {
+            uexWindow.toast(0, 5, '再按一次退出应用', 1000); 
+            c1c=1; setTimeout(function(){ c1c=0; }, 2000);
+        }
+    };
+}
+</script>

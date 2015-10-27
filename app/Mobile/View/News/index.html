@@ -1,0 +1,75 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>新闻资讯 - 捷和二手车</title>
+  <include file="Public:meta" />
+  <style>
+      .am-pagination a{
+          padding: .6rem;
+      }
+  </style>
+</head>
+<body>
+
+
+<header data-am-widget="header" class="am-header am-header-default my-header">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:void(0);" onclick="javascript:history.go(-1);" class="">
+        <span class="am-icon-chevron-left am-icon-sm am-icon-md"></span>
+    </a>
+  </div>
+  <h1 class="am-header-title">新闻资讯</h1>
+  <div class="am-header-right am-header-nav">
+    <a href="#doc-oc-menu" data-am-offcanvas>
+      <span style="font-size:1rem;">选车</span>
+    </a>
+	<div id="doc-oc-menu" class="am-offcanvas">
+	  <div class="am-offcanvas-bar">
+	    <div class="am-offcanvas-content">
+		  	<ul class="am-nav">        
+			  <li class="am-active"><a href="__APP__/car/">选车中心</a></li>
+			  <li class="am-active"><a href="__APP__/news/">新闻中心</a></li>
+			  <li class="am-active"><a href="__APP__/page/about/">关于捷和</a></li>
+			  <li class="am-active"><a href="#">我要卖车</a></li>
+			  <li class="am-active"><a href="#">定制车源</a></li>
+			</ul>
+	    </div>
+	  </div>
+	</div>
+  </div>
+</header>
+
+
+<div class="newslist prit" id="newslist">
+	<volist name="newsList" id="vo">
+	<a class="mod" href="__APP__/news/{$vo.id}/">
+	<eq name="vo.image" value=""><img src="/public/images/jh100.jpg"><else/><img src="{:C('WEB_RES_URL')}{$vo.image}"></eq>
+	<b>
+	<h2>{$vo.title}</h2>
+	<em><span>时间:{$vo.addtime|date="Y-m-d",###}</span><span>点击:{$vo.clicktimes}</span></em>
+	</b>
+	</a>
+	</volist>
+</div>
+    
+<div data-am-widget="pagination" class="am-pagination am-pagination-default">
+    {$page}
+</div>
+
+
+
+
+<include file="Public:footer" />
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/public/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+<script src="/public/js/amazeui.min.js"></script>
+</body>
+</html>

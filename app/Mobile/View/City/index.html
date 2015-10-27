@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>捷和分店列表</title>
+  <include file="Public:meta" />
+</head>
+<body>
+
+
+<header data-am-widget="header" class="am-header am-header-default my-header">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:void(0);" onclick="javascript:history.go(-1);" class="">
+      <span class="am-icon-chevron-left am-icon-sm am-icon-md"></span>
+    </a>
+	
+  </div>
+  <h1 class="am-header-title">
+    品牌列表
+  </h1>
+  <div class="am-header-right am-header-nav">
+    <a href="#doc-oc-demo1" data-am-offcanvas>
+      <span style="font-size:1rem;">选车</span>
+    </a>
+	<div id="doc-oc-demo1" class="am-offcanvas">
+	  <div class="am-offcanvas-bar">
+	    <div class="am-offcanvas-content">
+		  	<ul class="am-nav">        
+			  <li class="am-active"><a href="__APP__/car/">选车中心</a></li>
+			  <li class="am-active"><a href="__APP__/news/">新闻中心</a></li>
+			  <li class="am-active"><a href="__APP__/page/about/">关于捷和</a></li>
+			  <li class="am-active"><a href="#">我要卖车</a></li>
+			  <li class="am-active"><a href="#">定制车源</a></li>
+			</ul>
+	    </div>
+	  </div>
+	</div>
+  </div>
+</header>
+
+
+<div id="carcontent" class="carbrand">
+    <volist name="city" id="ct">
+		
+		<div class="mod">
+			<h3><a href="__APP__/car/index/city/{$ct.id}" id="{$ct.pinyin}">{$ct.title}</a></h3>
+			<nav class="list">
+				<volist name="store" id="vo">
+				<eq name="ct.id" value="$vo['city']">
+				<a href="__APP__/car/index/city/{$ct.id}/store/{$vo.id}"><b>{$vo.title}<em></em></b></a>
+				</eq>
+				</volist>
+			</nav>
+		</div>
+		
+	</volist>
+</div>
+
+
+
+
+
+
+<include file="Public:footer" />
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/public/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+<script src="/public/js/amazeui.min.js"></script>
+</body>
+</html>

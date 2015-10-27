@@ -1,0 +1,77 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$brandData.title} - 车系列表</title>
+  <include file="Public:meta" />
+</head>
+<body>
+
+
+<header data-am-widget="header" class="am-header am-header-default my-header">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:void(0);" onclick="javascript:history.go(-1);" class="">
+      <span class="am-icon-chevron-left am-icon-sm am-icon-md"></span>
+    </a>
+  </div>
+  <h1 class="am-header-title">{$brandData.title}</h1>
+  <div class="am-header-right am-header-nav">
+    <a href="#doc-oc-menu" data-am-offcanvas>
+      <span style="font-size:1rem;">选车</span>
+    </a>
+	<div id="doc-oc-menu" class="am-offcanvas">
+	  <div class="am-offcanvas-bar">
+	    <div class="am-offcanvas-content">
+		  	<include file="Public:menu" />
+	    </div>
+	  </div>
+	</div>
+  </div>
+</header>
+
+
+
+<div id="akd_content" class="carbrand">
+		<div class="mod">
+			<nav class="list">
+				<a href="__APP__/car/index/brand/{$brandData.id}/"><b>全部<em></em></b></a>
+			</nav>
+		</div>
+		<div class="mod">
+			<nav class="list">
+				<volist name="seriesList" id="vo">
+				<eq name="az.letter" value="$vo['letter']">
+				<a href="__APP__/car/index/brand/{$vo.brand_id}/series/{$vo.id}"><b>{$vo.title}({$vo.subtitle})<em></em></b></a>
+				</eq>
+				</volist>
+			</nav>
+		</div>
+</div>
+
+<div id="navbarUser" style="height:3rem;line-height:3rem;font-size:1rem;background:#0e90d2;color:#fff;padding-left:.5rem;display:none;" data-am-widget="navbar" class="am-navbar am-cf am-navbar-default " style="height:60px;" id="">
+        <span class="am-navbar-label"></span>
+</div>
+
+
+
+<include file="Public:footer" />
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/public/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+<script src="/public/js/amazeui.min.js"></script>
+<script>
+if(localStorage["realName"] && localStorage["userPhone"]){
+   $('#navbarUser').show();
+   $('#navbarUser span').text('销售顾问：'+ localStorage["realName"] + localStorage["userPhone"]);
+}else{
+   $('#navbarUser').hide();  
+}
+</script>
+</body>
+</html>

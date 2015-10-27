@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>用户登录_{$SiteConfigData.webtitle}</title>
+  <meta name="description" content="{$SiteConfigData.webdescription}">
+  <meta name="keywords" content="{$SiteConfigData.webkeyword}">
+  <include file="Public:meta" />
+</head>
+<body>
+
+
+<header data-am-widget="header" class="am-header am-header-default my-header">
+  <div class="am-header-left am-header-nav">
+    <a href="__APP__" class="">
+      <span class="am-icon-home am-icon-home am-icon-sm am-icon-home am-icon-md"></span>
+    </a>
+  </div>
+  <h1 class="am-header-title">
+    用户登录
+  </h1>
+  <div class="am-header-right am-header-nav">
+    <a href="#doc-oc-menu" data-am-offcanvas>
+      <span class="am-icon-bars am-icon-bars am-icon-sm am-icon-bars am-icon-md"></span>
+    </a>
+	<div id="doc-oc-menu" class="am-offcanvas">
+	  <div class="am-offcanvas-bar">
+	    <div class="am-offcanvas-content">
+		  	<include file="Public:menu" />
+	    </div>
+	  </div>
+	</div>
+	
+  </div>
+</header>
+
+
+    
+<div class="am-g" style="margin-top: 2rem;">
+  <div class="am-u-md-8 am-u-sm-centered">
+    <form class="am-form" action="" method="post">
+      <fieldset class="am-form-set">
+        <input type="text" placeholder="输入您的手机号码" name="telphone" id="telphone" />
+        <label style="padding: 1rem 0;display: none;" class="tips">验证成功</label>
+      </fieldset>
+      <fieldset class="am-form-set">
+        <input type="text" placeholder="输入您的密码" name="password" id="password" />
+        <label style="padding: 1rem 0;display: none;" class="tips">验证成功</label>
+      </fieldset>
+        <button type="submit" onclick="return subForm();" class="am-btn am-btn-primary am-btn-block">登陆</button>
+
+        <a style="margin-top:1rem;" href="__APP__/user/register" class="am-btn am-btn-primary am-btn-block">点击注册</a>
+    </form>
+  </div>
+</div>  
+
+
+
+
+<include file="Public:footer" />
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+<script src="__PUBLIC__/js/amazeui.min.js"></script>
+<script type="text/javascript">
+var PhoneEx = /13[0-9]{9}$|^14[0-9]{9}$|^15[0-9]{9}$|^18[0-9]{9}$|^17[0-9]{9}$|^400[0-9]{7}-?([1-9]{1}[0-9]{0,4})?$/;
+function subForm(){
+    var phone = $('#telphone').val();
+    var password = $('#password').val();
+    if (phone == "" || !PhoneEx.test(phone)) {
+        $('#realname').next('.tips').show().text('请输入正确的手机号码');
+        return false;
+    }else{
+        $('#realname').next('.tips').hide().text('');
+    }
+    if (password == "") {
+        $('#realname').next('.tips').show().text('请输入密码');
+        return false;
+    }else{
+        $('#realname').next('.tips').hide().text('');
+    }
+    return true;
+}
+</script>
+</body>
+</html>
